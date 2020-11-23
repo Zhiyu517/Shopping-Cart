@@ -1,3 +1,7 @@
 body {
     /*background: red !important;*/
 }
+
+span.error {
+    color: red !important;
+}

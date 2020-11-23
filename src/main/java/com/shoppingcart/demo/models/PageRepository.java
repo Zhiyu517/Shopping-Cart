@@ -7,4 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface PageRepository extends JpaRepository<Page, Integer> {
+
+    Page findBySlug(String slug);
+
 }
