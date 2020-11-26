@@ -25,7 +25,7 @@ public class AdminPagesController {
 
     @GetMapping
     public String index(Model model) {
-        List<Page> pages = pageRepo.findAll();
+        List<Page> pages = pageRepo.findAllByOrderBySortingAsc();
 
         model.addAttribute("pages", pages);
 
@@ -115,5 +115,21 @@ public class AdminPagesController {
         redirectAttributes.addFlashAttribute("alertClass", "alert-success");
 
         return "redirect:/admin/pages";
+    }
+
+    @PostMapping("/reorder")
+    public @ResponseBody String reorder(@RequestParam("id[]") int[] id) {
+
+        int count = 1;
+        Page page;
+
+        for (int pageId : id) {
+            page = pageRepo.getOne(pageId);
+            page.setSorting(count);
+            pageRepo.save(page);
+            count++;
+        }
+
+        return "ok";
     }
 }

@@ -1,0 +1,35 @@
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head th:replace="/fragments/head"></head>
+
+    <body>
+        <nav th:replace="/fragments/nav :: nav-admin"></nav>
+        <div class="container">
+            <h1 class="display">Add a category</h1>
+            <a href="/admin/categories" class="btn btn-primary mb-5">Back to categories</a>
+
+
+            <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"></div>
+
+            <form method="post" th:object="${category}" th:action="@{/admin/categories/add}" >
+
+                <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                    There are errors
+                </div>
+
+                <div class="form-group">
+                    <label for="">Name</label>
+                    <input type="text" class="form-control" th:id="name" th:name="name" th:value="${categoryInfo?.name}" placeholder="Name">
+                    <span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                </div>
+
+
+                <button class="btn btn-danger"> Add</button>
+            </form>
+
+
+        </div>
+    </body>
+    <div th:replace="/fragments/footer"></div>
+</html>

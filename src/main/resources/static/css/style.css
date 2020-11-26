@@ -5,3 +5,11 @@ body {
 span.error {
     color: red !important;
 }
+
+table.sorting tr:not(.home) {
+    cursor: pointer;
+}
+
+.ui-state-highlight {
+    border: 1px dashed #ccc;
+}

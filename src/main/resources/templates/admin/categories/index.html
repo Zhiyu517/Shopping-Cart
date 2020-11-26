@@ -1,0 +1,52 @@
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head th:replace="/fragments/head"></head>
+
+    <body>
+        <nav th:replace="/fragments/nav :: nav-admin"></nav>
+        <div class="container">
+            <h1 class="display">Categories</h1>
+            <a href="/admin/categories/add" class="btn btn-primary mb-5">Add new</a>
+
+            <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"></div>
+
+            <div th:if="${!categories.empty}">
+                <table class="table sorting" id="categories">
+                    <tr class="home">
+                        <th>Name</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    <tr th:each="category: ${categories}" th:id="'id_' + ${category.id}">
+                        <td th:text="${category.name}"></td>
+                        <td> <a th:href="@{'/admin/categories/edit/' + ${category.id}}">Edit</a></td>
+                        <td> <a th:href="@{'/admin/categories/delete/' + ${category.id}}" class = "confirmDeletion">Delete</a></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div th:unless="${!categories.empty} ">
+                <h4 class="display-4">There are no categories at the moment</h4>
+            </div>
+
+        </div>
+    </body>
+    <div th:replace="/fragments/footer"></div>
+
+    <script>
+        $("table#categories tbody").sortable({
+            items: "tr:not(.home)",
+            placeholder: "ui-state-highlight",
+            update: function() {
+                var ids = $("table#categories tbody").sortable("serialize");
+                var url = "/admin/categories/reorder";
+
+                $.post(url, ids, function(data) {
+                    console.log(data);
+                });
+            }
+        });
+    </script>
+
+</html>
