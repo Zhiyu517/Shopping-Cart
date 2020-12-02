@@ -3,9 +3,11 @@ package com.shoppingcart.demo.controllers;
 import com.shoppingcart.demo.models.CategoryRepository;
 import com.shoppingcart.demo.models.ProductRepository;
 import com.shoppingcart.demo.models.data.Category;
-import com.shoppingcart.demo.models.data.Page;
 import com.shoppingcart.demo.models.data.Product;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,15 +34,29 @@ public class AdminProductController {
     private CategoryRepository categoryRepo;
 
     @GetMapping
-    public String index(Model model) {
-        List<Product> products = productRepo.findAll();
-        model.addAttribute("products", products);
+    public String index(Model model, @RequestParam(value="page", required = false) Integer p) {
+
+        int perPage = 6;
+        int page = (p != null) ? p : 0;
+
+        Pageable Pageable = PageRequest.of(page, perPage);
+        Page<Product> products = productRepo.findAll(Pageable);
+//        List<Product> products = productRepo.findAll();
+
         List<Category> categories = categoryRepo.findAll();
         Map<Integer, String> cats = new HashMap<>();
         for (Category cat : categories) {
             cats.put(cat.getId(), cat.getName());
         }
+
+        long count = productRepo.count();
+        double pageCount = Math.ceil((double) count / (double) perPage);
+        model.addAttribute("products", products);
         model.addAttribute("cats", cats);
+        model.addAttribute("pageCount", (int)pageCount);
+        model.addAttribute("perPage", perPage);
+        model.addAttribute("count", count);
+        model.addAttribute("page", page);
 
         return "admin/products/index";
     }
@@ -169,6 +185,20 @@ public class AdminProductController {
         }
 
         return "redirect:/admin/products/edit/" + product.getId();
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable int id, RedirectAttributes redirectAttributes) throws IOException {
+        Product currentProduct = productRepo.getOne(id);
+        Path path2 = Paths.get("src/main/resources/static/media/" + currentProduct.getImage());
+        Files.delete(path2);
+
+        productRepo.deleteById(id);
+
+        redirectAttributes.addFlashAttribute("message", "Product deleted");
+        redirectAttributes.addFlashAttribute("alertClass", "alert-success");
+
+        return "redirect:/admin/products";
     }
 
 }

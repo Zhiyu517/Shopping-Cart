@@ -3,6 +3,16 @@ $(function() {
     $("a.confirmDeletion").click(function() {
         if (!confirm("confirm deletion")) return false;
     })
+
+    if ($("#content").length) {
+        ClassicEditor
+            .create(document.querySelector("#content"));
+    }
+
+    if ($("#description").length) {
+        ClassicEditor
+            .create(document.querySelector("#description"));
+    }
 })
 
 function readURL(input, idNum) {

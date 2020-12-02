@@ -1,0 +1,6 @@
+<p xmlns:th="http://www.w3.org/1999/xhtml">You have <span th:text="${size}"></span> items in your cart.</p>
+<p xmlns:th="http://www.w3.org/1999/xhtml"> Total <span th:text="'$' + ${#numbers.formatDecimal(total, 0, 'COMMA', 2, 'POINT')}"></span> </p>
+<p>
+    <a href="/cart/view" class="btn btn-success">View cart</a>
+    <a href="/cart/clear" class="btn btn-danger float-right">Clear cart</a>
+</p>
