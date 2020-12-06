@@ -35,6 +35,12 @@
     <div th:replace="/fragments/footer"></div>
 
     <script>
+        var token = $("meta[name='_csrf']").attr("content");
+        var header = $("meta[name='_csrf_header']").attr("content");
+        $(document).ajaxSend(function (e, xhr, options) {
+            xhr.setRequestHeader(header, token);
+        });
+
         $("table#categories tbody").sortable({
             items: "tr:not(.home)",
             placeholder: "ui-state-highlight",

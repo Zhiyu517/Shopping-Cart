@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.servlet.http.HttpSession;
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,9 +26,16 @@ public class Common {
     private CategoryRepository categoryRepo;
 
     @ModelAttribute
-    public void shareData(Model model, HttpSession session) {
+    public void shareData(Model model, HttpSession session, Principal principal) {
+
+        if (principal != null) {
+            model.addAttribute("principal", principal.getName()); //get the user name
+        }
+
         List<Page> pages = pageRepo.findAllByOrderBySortingAsc();
-        List<Category> categories = categoryRepo.findAll();
+
+        List<Category> categories = categoryRepo.findAllByOrderBySortingAsc();
+
         boolean cartActive = false;
         if (session.getAttribute("cart") != null) {
             Map<Integer, Cart> cart = (HashMap) session.getAttribute("cart");

@@ -13,7 +13,7 @@ import java.util.Collection;
 @Table(name="admin")
 @Data
 @Entity
-public class admin implements UserDetails {
+public class Admin implements UserDetails {
 
     private static final long serialVersion = 2l;
 

@@ -1,7 +1,8 @@
 package com.shoppingcart.demo.models;
 
-import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
+import com.shoppingcart.demo.models.data.Admin;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AdminRepository extends JpaRepository<KafkaProperties.Admin, Integer>{
+public interface AdminRepository extends JpaRepository<Admin, Integer>{
+    Admin findByUsername(String username);
 }
