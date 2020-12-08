@@ -1,20 +1,20 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
-<head th:replace="/fragments/head"></head>
+<head th:replace="fragments/head"></head>
 
 <body>
 
-<nav th:replace="/fragments/nav :: nav-front"></nav>
+<nav th:replace="fragments/nav :: nav-front"></nav>
 
 <div class="container-fluid mt-5">
     <div class="row">
-        <div th:replace="/fragments/categories"></div>
+        <div th:replace="fragments/categories"></div>
         <div class="col"></div>
         <div class="col-7">
             <div class="overlay text-center d-none">
                 <h4 class="display-4">You are being redirected to paypal...</h4>
-                <img src="/images/ajax-loader.gif" alt="">
+                <img src="../../images/ajax-loader.gif" alt="">
             </div>
             <h2 class="display-4">Cart Overview</h2>
             <table class="table">
@@ -28,7 +28,7 @@
                 <tr th:each="el: ${cart}">
                     <td th:text="${el.value.name}"></td>
                     <td>
-                        <img style="width: 100px;" th:src="@{'/media/' + ${el.value.image}}" />
+                        <img style="width: 100px;" th:src="@{'../../media/' + ${el.value.image}}" />
                     </td>
                     <td>
                         <span th:text="${el.value.quantity}"></span>
@@ -75,7 +75,7 @@
     <input type="image" src="http://www.paypal.com/en_US/i/btn/x-click-but01.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
 </form>
 
-<div th:replace="/fragments/footer"></div>
+<div th:replace="fragments/footer"></div>
 
 <script>
     $(function () {

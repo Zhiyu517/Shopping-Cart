@@ -1,15 +1,15 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
-<head th:replace="/fragments/head"></head>
+<head th:replace="fragments/head"></head>
 
 <body>
 
-<nav th:replace="/fragments/nav :: nav-front"></nav>
+<nav th:replace="fragments/nav :: nav-front"></nav>
 
 <div class="container-fluid mt-5">
     <div class="row">
-        <div th:replace="/fragments/categories"></div>
+        <div th:replace="fragments/categories"></div>
         <div class="col"></div>
         <div class="col-6">
             <h3 class="display-4">Register</h3>
@@ -59,7 +59,7 @@
     </div>
 </div>
 
-<div th:replace="/fragments/footer"></div>
+<div th:replace="fragments/footer"></div>
 
 </body>
 

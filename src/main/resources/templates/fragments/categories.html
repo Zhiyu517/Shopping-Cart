@@ -8,5 +8,5 @@
             <a th:href="@{'/category/' + ${category.slug}}" class="nav-link" th:text="${category.name}">All Products</a>
         </li>
     </ul>
-    <div th:replace="/fragments/cart_partial"></div>
+    <div th:replace="fragments/cart_partial"></div>
 </div>

@@ -1,15 +1,15 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
-<head th:replace="/fragments/head"></head>
+<head th:replace="fragments/head"></head>
 
 <body>
 
-<nav th:replace="/fragments/nav :: nav-front"></nav>
+<nav th:replace="fragments/nav :: nav-front"></nav>
 
 <div class="container-fluid mt-5">
     <div class="row">
-        <div th:replace="/fragments/categories"></div>
+        <div th:replace="fragments/categories"></div>
         <div class="col"></div>
         <div class="col-8">
 
@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-4" th:each="product: ${products}">
                     <p>
-                        <img style="width:200px;" th:src="@{'/media/' + ${product.image}}">
+                        <img style="width:200px;" th:src="@{'../../media/' + ${product.image}}">
                     </p>
                     <h4 th:text="${product.name}"></h4>
                     <div class="desc" th:utext="${product.description}"></div>
@@ -28,7 +28,7 @@
                             <a class="btn btn-primary addToCart"
                                th:attr="data-id=${product.id}"
                                th:href="@{'/cart/add/' + ${product.id}}">Add to cart</a>
-                            <img class="ajaxLoader d-none" src="/images/ajax-loader.gif">
+                            <img class="ajaxLoader d-none" src="../../images/ajax-loader.gif">
                         </p>
                         <div class="btn btn-sm btn-success hide productAdded">Product added!</div>
                     </div>
@@ -53,7 +53,7 @@
     </div>
 </div>
 
-<div th:replace="/fragments/footer"></div>
+<div th:replace="fragments/footer"></div>
 
 <script>
 

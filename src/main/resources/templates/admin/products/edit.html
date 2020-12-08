@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
-<head th:replace="/fragments/head"></head>
+<head th:replace="fragments/head"></head>
 
 <body>
 
-<nav th:replace="/fragments/nav :: nav-admin"></nav>
+<nav th:replace="fragments/nav :: nav-admin"></nav>
 
 <div class="container">
 
@@ -40,7 +40,7 @@
             <br>
             <br>
             <label for="">Current image:</label>
-            <img style="width: 100px;" th:src="@{'/media/' + ${product.image}}">
+            <img style="width: 100px;" th:src="@{'../../media/' + ${product.image}}">
 
         </div>
 
@@ -67,7 +67,7 @@
 
 </div>
 
-<div th:replace="/fragments/footer"></div>
+<div th:replace="fragments/footer"></div>
 
 <script>
 

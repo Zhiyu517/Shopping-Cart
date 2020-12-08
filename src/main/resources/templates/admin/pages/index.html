@@ -1,10 +1,10 @@
 
 <!doctype html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-    <head th:replace="/fragments/head"></head>
+    <head th:replace="fragments/head"></head>
 
     <body>
-        <nav th:replace="/fragments/nav :: nav-admin"></nav>
+        <nav th:replace="fragments/nav :: nav-admin"></nav>
         <div class="container">
             <h1 class="display">Pages</h1>
             <a href="/admin/pages/add" class="btn btn-primary mb-5">Add new</a>
@@ -35,7 +35,7 @@
 
         </div>
     </body>
-    <div th:replace="/fragments/footer"></div>
+    <div th:replace="fragments/footer"></div>
 
     <script>
         $("table#pages tbody").sortable({

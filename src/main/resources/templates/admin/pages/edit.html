@@ -1,10 +1,10 @@
 
 <!doctype html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-    <head th:replace="/fragments/head"></head>
+    <head th:replace="fragments/head"></head>
 
     <body>
-        <nav th:replace="/fragments/nav :: nav-admin"></nav>
+        <nav th:replace="fragments/nav :: nav-admin"></nav>
         <div class="container">
             <h1 class="display" th:text="'Edit ' + ( ${pageTitle}?: ${page.title})"></h1>
             <a href="/admin/pages" class="btn btn-primary mb-5">Back to pages</a>
@@ -46,5 +46,5 @@
 
         </div>
     </body>
-    <div th:replace="/fragments/footer"></div>
+    <div th:replace="fragments/footer"></div>
 </html>
