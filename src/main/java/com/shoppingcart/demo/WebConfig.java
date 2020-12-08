@@ -14,12 +14,12 @@ public class WebConfig implements WebMvcConfigurer{
 //    }
 
 
-
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/media/**")
-                .addResourceLocations("file:/Users/use/gouwuche/src/main/resources/static/media/");
-    }
+//
+//    @Override
+//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//        registry.addResourceHandler("/media/**")
+//                .addResourceLocations("file:/Users/use/gouwuche/src/main/resources/static/media/");
+//    }
 
 
 }

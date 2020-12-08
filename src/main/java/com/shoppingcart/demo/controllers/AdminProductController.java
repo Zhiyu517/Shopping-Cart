@@ -86,7 +86,7 @@ public class AdminProductController {
         boolean fileOK = false;
         byte[] bytes = file.getBytes();
         String filename = file.getOriginalFilename();
-        Path path = Paths.get("src/main/resources/static/media/" + filename);
+        Path path = Paths.get("resources/static/media/" + filename);
 
         if (filename.endsWith("jpg") || filename.endsWith("png")) {
             fileOK = true;
@@ -147,7 +147,7 @@ public class AdminProductController {
         boolean fileOK = false;
         byte[] bytes = file.getBytes();
         String filename = file.getOriginalFilename();
-        Path path = Paths.get("src/main/resources/static/media/" + filename);
+        Path path = Paths.get("resources/static/media/" + filename);
 
         if (!file.isEmpty()) {
             if (filename.endsWith("jpg") || filename.endsWith("png")) {
@@ -174,7 +174,7 @@ public class AdminProductController {
         } else {
             product.setSlug(slug);
             if (!file.isEmpty()) {
-                Path path2 = Paths.get("src/main/resources/static/media/" + currentProduct.getImage());
+                Path path2 = Paths.get("resources/static/media/" + currentProduct.getImage());
                 Files.delete(path2);
                 product.setImage(filename);
                 Files.write(path, bytes);
@@ -190,7 +190,7 @@ public class AdminProductController {
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable int id, RedirectAttributes redirectAttributes) throws IOException {
         Product currentProduct = productRepo.getOne(id);
-        Path path2 = Paths.get("src/main/resources/static/media/" + currentProduct.getImage());
+        Path path2 = Paths.get("resources/static/media/" + currentProduct.getImage());
         Files.delete(path2);
 
         productRepo.deleteById(id);
