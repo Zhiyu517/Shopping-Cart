@@ -20,9 +20,9 @@ public class WebConfig implements WebMvcConfigurer{
         logger.info("!!!!!!!!!!!!!!!!!!!!!! path is {}", prefix);
 //        int index = prefix.indexOf("target/classes/");
 //        prefix = prefix.substring(0, index);
-        String path = prefix + "src/main/resources/static/media/";
+//        String path = prefix + "src/main/resources/static/media/";
         registry.addResourceHandler("/media/**")
-                .addResourceLocations(path);
+                .addResourceLocations("/app/src/main/resources/static/media/");
     }
 
 }
