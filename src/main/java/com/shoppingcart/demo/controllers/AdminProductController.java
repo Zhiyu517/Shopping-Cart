@@ -129,10 +129,10 @@ public class AdminProductController {
 
     @PostMapping("/edit")
     public String edit(@Valid Product product,
-                      BindingResult bindingResult,
-                      MultipartFile file,
-                      RedirectAttributes redirectAttributes,
-                      Model model) throws IOException {
+                       BindingResult bindingResult,
+                       MultipartFile file,
+                       RedirectAttributes redirectAttributes,
+                       Model model) throws IOException {
 
         Product currentProduct = productRepo.getOne(product.getId());
 
